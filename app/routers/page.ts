@@ -1,0 +1,27 @@
+export default [
+  [
+    'GET',
+    '/api/page/getById',
+    'page.getById',
+  ],
+  [
+    'POST',
+    '/api/page/create',
+    'page.create',
+  ],
+  [
+    'POST',
+    '/api/page/updateWidget',
+    'page.updateWidget',
+  ],
+  [
+    'POST',
+    '/api/page/del',
+    'page.del',
+  ],
+  [
+    'GET',
+    '/api/page/getListByPage',
+    'page.getListByPage',
+  ],
+];
