@@ -7,6 +7,7 @@ import ExportBase from '../../../app/controller/base';
 import ExportForm from '../../../app/controller/form';
 import ExportPage from '../../../app/controller/page';
 import ExportUpload from '../../../app/controller/upload';
+import ExportUser from '../../../app/controller/user';
 import ExportWidget from '../../../app/controller/widget';
 
 declare module 'egg' {
@@ -16,6 +17,7 @@ declare module 'egg' {
     form: ExportForm;
     page: ExportPage;
     upload: ExportUpload;
+    user: ExportUser;
     widget: ExportWidget;
   }
 }

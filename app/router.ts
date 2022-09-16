@@ -15,9 +15,7 @@ function createRoute(app, config) {
 
 export default (app: Application) => {
   // const { controller, router } = app;
-  // router.get('/', controller.home.index);
-
-  // createRoute(app, PageRouter);
+  console.log('xxx');
   createRoute(app, ApplicationRouter);
   createRoute(app, UploadRouter);
   createRoute(app, PageRouter);

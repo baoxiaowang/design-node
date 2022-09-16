@@ -60,4 +60,17 @@ export default class ApplicationService extends Service {
     });
     return widgetOptions;
   }
+
+  public async getWidgetValue({ formId, widgetKey, word } : {
+    formId: string;
+    widgetKey: string;
+    word: string
+  }) {
+    const valueList = await this.service.form.getListByKey({
+      formId,
+      widgetKey,
+      word,
+    });
+    return valueList;
+  }
 }

@@ -63,4 +63,39 @@ export default class extends Service {
       };
     });
   }
+
+  /**
+   *
+   * @return
+   */
+  public async getListByKey({
+    formId,
+    widgetKey,
+    word,
+  }: {
+    formId: string,
+    widgetKey: string,
+    word: string,
+  }) {
+    console.log('widgetKey', widgetKey);
+    const result = await this.app.mongo.find(this.collectionName, {
+      query: {
+        formId,
+        [`formData.${widgetKey}`]: new RegExp(word),
+      },
+      project: {
+        formData: {
+          [widgetKey]: 1,
+        },
+      },
+    });
+    console.log(this.ctx.companyId);
+    return result.map((item: any) => {
+      return {
+        id: item._id,
+        value: item.formData[widgetKey],
+        label: item.formData[widgetKey],
+      };
+    });
+  }
 }

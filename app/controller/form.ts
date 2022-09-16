@@ -2,7 +2,7 @@ import BaseController from './base';
 import routerDecorator from 'egg-router-decorator';
 
 @routerDecorator.prefix('/form')
-export default class extends BaseController {
+export default class FormController extends BaseController {
   /**
    * create
    * 创建表单数据
@@ -23,9 +23,7 @@ export default class extends BaseController {
     this.result(res);
   }
 
-  /**
-   * name
-   */
+
   @routerDecorator.get('/getListByPage')
   public async getListByPage() {
     const { formId } = this.ctx.query;
