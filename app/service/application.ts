@@ -48,6 +48,9 @@ export default class ApplicationService extends Service {
   public async getListByPage() {
     console.log('collectionName', this.collectionName);
     const result = this.app.mongo.find(this.collectionName, {
+      query: {
+        companyId: this.ctx.companyId,
+      },
       project: {
         _id: 1,
         id: { $toString: '$_id' },

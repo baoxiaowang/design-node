@@ -11,7 +11,7 @@ import ExportApplication from '../../../app/service/application';
 import ExportCompany from '../../../app/service/company';
 import ExportForm from '../../../app/service/form';
 import ExportPage from '../../../app/service/page';
-import ExportRelationship from '../../../app/service/relationship';
+import ExportRelation from '../../../app/service/relation';
 import ExportUpload from '../../../app/service/upload';
 import ExportUser from '../../../app/service/user';
 import ExportWidget from '../../../app/service/widget';
@@ -23,7 +23,7 @@ declare module 'egg' {
     company: AutoInstanceType<typeof ExportCompany>;
     form: AutoInstanceType<typeof ExportForm>;
     page: AutoInstanceType<typeof ExportPage>;
-    relationship: AutoInstanceType<typeof ExportRelationship>;
+    relation: AutoInstanceType<typeof ExportRelation>;
     upload: AutoInstanceType<typeof ExportUpload>;
     user: AutoInstanceType<typeof ExportUser>;
     widget: AutoInstanceType<typeof ExportWidget>;
