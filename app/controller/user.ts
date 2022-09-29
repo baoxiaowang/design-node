@@ -8,6 +8,7 @@ export default class UserController extends BaseController {
   @routerDecorator.get('/info')
   public async info() {
     const { userPhone, companyId } = this.ctx;
+    console.log('@@@@@@@', companyId);
     const data = await this.ctx.service.user.getLoginUserInfo({
       userPhone,
       companyId,

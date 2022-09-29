@@ -4,6 +4,7 @@
 import 'egg';
 import ExportApplication from '../../../app/controller/application';
 import ExportBase from '../../../app/controller/base';
+import ExportCompany from '../../../app/controller/company';
 import ExportForm from '../../../app/controller/form';
 import ExportPage from '../../../app/controller/page';
 import ExportUpload from '../../../app/controller/upload';
@@ -14,6 +15,7 @@ declare module 'egg' {
   interface IController {
     application: ExportApplication;
     base: ExportBase;
+    company: ExportCompany;
     form: ExportForm;
     page: ExportPage;
     upload: ExportUpload;

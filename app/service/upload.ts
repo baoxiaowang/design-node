@@ -43,7 +43,7 @@ class QiniuUploadService extends Service {
           if (respInfo.statusCode === 200) {
             resolve({
               ...respBody,
-              url: 'http://rh5pzzxzh.hd-bkt.clouddn.com/' + respBody.key,
+              url: 'http://cdn.neeko-design.com/' + respBody.key,
             });
           } else {
             reject(respBody);

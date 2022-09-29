@@ -28,7 +28,7 @@ export default class extends Service {
       name: account.name,
       phone: account.phone,
       companyId,
-      companyName: companyInfo.companyName,
+      companyName: companyInfo?.companyName,
       companyList,
     };
   }
@@ -92,7 +92,7 @@ export default class extends Service {
       const companyList = await this.service.relation.getCompanyByUserPhone({ userPhone: phone });
       const token = this.app.jwt.sign({
         ...account,
-      }, this.app.config.jwt.secret, { expiresIn: '1800s' });
+      }, this.app.config.jwt.secret, { expiresIn: '8h' });
 
       return [ true, { login: true, token, companyList }, '登录成功' ];
     }

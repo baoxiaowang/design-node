@@ -15,7 +15,7 @@ module.exports = options => {
         ctx.decode = decode;
         ctx.userPhone = decode.phone;
 
-        const companyId = ctx.request.header.company_id;
+        const companyId = ctx.request.header['company-id'];
         console.log('header', ctx.request.header);
         ctx.userPhone = decode.phone;
         ctx.companyId = companyId;
