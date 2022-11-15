@@ -9,7 +9,9 @@ type AutoInstanceType<T, U = T extends CanExportFunc ? T : T extends AnyFunc ? R
 import ExportTest from '../../../app/service/Test';
 import ExportApplication from '../../../app/service/application';
 import ExportCompany from '../../../app/service/company';
+import ExportDept from '../../../app/service/dept';
 import ExportForm from '../../../app/service/form';
+import ExportMember from '../../../app/service/member';
 import ExportPage from '../../../app/service/page';
 import ExportRelation from '../../../app/service/relation';
 import ExportUpload from '../../../app/service/upload';
@@ -21,7 +23,9 @@ declare module 'egg' {
     test: AutoInstanceType<typeof ExportTest>;
     application: AutoInstanceType<typeof ExportApplication>;
     company: AutoInstanceType<typeof ExportCompany>;
+    dept: AutoInstanceType<typeof ExportDept>;
     form: AutoInstanceType<typeof ExportForm>;
+    member: AutoInstanceType<typeof ExportMember>;
     page: AutoInstanceType<typeof ExportPage>;
     relation: AutoInstanceType<typeof ExportRelation>;
     upload: AutoInstanceType<typeof ExportUpload>;

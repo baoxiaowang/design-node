@@ -1,19 +1,20 @@
-// import { ObjectID } from 'bson';
+import { ObjectID } from 'bson';
 import { Service } from 'egg';
 
 interface IGetMember {
   userName? :string
   deptId?: string
+  userPhone?: string
 }
-export default class extends Service {
+export default class MemberService extends Service {
   get collectionName() {
-    return 'relation';
+    return 'member';
   }
 
   /**
-   * createRelation
+   * createMember
    */
-  public async createRelation({ userPhone, userName, companyId }: {
+  public async createMember({ userPhone, userName, companyId }: {
     userPhone: string
     userName: string
     companyId: string
@@ -57,7 +58,7 @@ export default class extends Service {
   }
 
 
-  public async getMember({ userName, deptId }: IGetMember) {
+  public async getMember({ userName, deptId, userPhone }: IGetMember) {
     const query: any = {};
     if (userName) {
       query.userName = userName;
@@ -69,9 +70,38 @@ export default class extends Service {
         },
       };
     }
+    if (userPhone) {
+      query.userPhone = userPhone;
+    }
     const res = await this.app.mongo.find(this.collectionName, {
       query,
+      limit: 10,
+
     });
-    return res;
+
+    return res.map(item => {
+      return {
+        ...item,
+        id: item._id,
+        _id: undefined,
+      };
+    });
+  }
+
+  public async getMemberByIds(memberIds: string[] = []) {
+    const res = await this.app.mongo.find(this.collectionName, {
+      query: {
+        _id: {
+          $in: memberIds.map(item => new ObjectID(item)),
+        },
+      },
+    });
+    return res.map(item => {
+      return {
+        ...item,
+        id: item._id,
+        _id: undefined,
+      };
+    });
   }
 }

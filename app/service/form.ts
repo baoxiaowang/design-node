@@ -20,7 +20,7 @@ export default class extends Service {
     formData: Record<string, any>
   }) {
     console.log(data, '$$$');
-    const result = this.app.mongo.insertOne(this.collectionName, {
+    const result = await this.app.mongo.insertOne(this.collectionName, {
       doc: {
         ...data,
         companyId: this.ctx.companyId,

@@ -21,7 +21,7 @@ export default class extends Service {
     ] = await Promise.all([
       this.getUserByPhone(userPhone),
       this.service.company.getCompanyById(companyId),
-      this.service.relation.getCompanyByUserPhone({ userPhone }),
+      this.service.member.getCompanyByUserPhone({ userPhone }),
     ]);
     console.log('#####', companyInfo);
     return {
@@ -54,7 +54,7 @@ export default class extends Service {
         const companyId = await this.service.company.createCompany({
           companyName,
         });
-        await this.service.relation.createRelation({
+        await this.service.member.createMember({
           userName: name,
           userPhone: phone,
           companyId,
@@ -89,7 +89,7 @@ export default class extends Service {
     console.log('account', account);
     const validate = account.password === password;
     if (validate) {
-      const companyList = await this.service.relation.getCompanyByUserPhone({ userPhone: phone });
+      const companyList = await this.service.member.getCompanyByUserPhone({ userPhone: phone });
       const token = this.app.jwt.sign({
         ...account,
       }, this.app.config.jwt.secret, { expiresIn: '8h' });
