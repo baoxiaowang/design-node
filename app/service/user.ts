@@ -55,8 +55,8 @@ export default class extends Service {
           companyName,
         });
         await this.service.member.createMember({
-          userName: name,
-          userPhone: phone,
+          name,
+          phone,
           companyId,
         });
         return true;
@@ -93,7 +93,6 @@ export default class extends Service {
       const token = this.app.jwt.sign({
         ...account,
       }, this.app.config.jwt.secret, { expiresIn: '8h' });
-
       return [ true, { login: true, token, companyList }, '登录成功' ];
     }
     return [ false, { login: false }, '账号或者密码错误' ];

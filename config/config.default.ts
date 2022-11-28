@@ -42,8 +42,6 @@ export default (appInfo: EggAppInfo) => {
       // domainWhiteList: [ 'http://localhost:5050/' ],
       domainWhiteList: [ '*' ],
     },
-
-
   } as PowerPartial<EggAppConfig>;
 
   // override config from framework / plugin

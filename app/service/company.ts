@@ -12,14 +12,13 @@ export default class extends Service {
   /**
    * createCompany
    */
-  public async createCompany({ companyName }) {
+  public async createCompany({ companyName }): Promise<string> {
     const data: InsertOneWriteOpResult<any> = await this.app.mongo.insertOne(this.collectionName, {
       doc: {
         companyName, // 公司名称
       },
     });
 
-    console.log('createCompany', data);
     return data.insertedId;
   }
 

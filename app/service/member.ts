@@ -14,16 +14,22 @@ export default class MemberService extends Service {
   /**
    * createMember
    */
-  public async createMember({ userPhone, userName, companyId }: {
-    userPhone: string
-    userName: string
+  public async createMember({ phone, name, companyId, dept = [], email, jobNum }: {
+    phone: string
+    name: string
     companyId: string
+    email?: string,
+    jobNum?: string,
+    dept?: string[]
   }) {
     return await this.app.mongo.insertOne(this.collectionName, {
       doc: {
-        userPhone, // 手机号 作为索引之一
-        userName, // 不同人在不同公司可以是不同的名字
+        phone, // 手机号 作为索引之一
+        name, // 不同人在不同公司可以是不同的名字
         companyId, // 企业id
+        dept, // 部门
+        email,
+        jobNum,
       },
     });
   }
@@ -38,7 +44,7 @@ export default class MemberService extends Service {
       pipeline: [
         {
           $match: {
-            userPhone,
+            phone: userPhone,
           },
         },
         {
@@ -76,16 +82,17 @@ export default class MemberService extends Service {
     const res = await this.app.mongo.find(this.collectionName, {
       query,
       limit: 10,
-
+      project: {
+        _id: 1,
+        id: '$_id',
+        name: 1,
+        phone: 1,
+        email: 1,
+        jobNum: 1,
+      },
     });
 
-    return res.map(item => {
-      return {
-        ...item,
-        id: item._id,
-        _id: undefined,
-      };
-    });
+    return res;
   }
 
   public async getMemberByIds(memberIds: string[] = []) {
@@ -104,4 +111,6 @@ export default class MemberService extends Service {
       };
     });
   }
+
+
 }
