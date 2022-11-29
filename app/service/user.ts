@@ -57,7 +57,7 @@ export default class extends Service {
         await this.service.member.createMember({
           name,
           phone,
-          companyId,
+          companyId: companyId?.toString(),
         });
         return true;
       }

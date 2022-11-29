@@ -43,6 +43,16 @@ export default class MemberService extends Service {
     const relationCompanyList = await this.app.mongo.aggregate(this.collectionName, {
       pipeline: [
         {
+          $addFields: {
+            companyId: {
+              $convert: {
+                input: '$companyId',
+                to: 'objectId',
+              },
+            },
+          },
+        },
+        {
           $match: {
             phone: userPhone,
           },
@@ -57,6 +67,11 @@ export default class MemberService extends Service {
         },
         {
           $unwind: '$companyInfo',
+        },
+        {
+          $project: {
+            _id: 0,
+          },
         },
       ],
     });
