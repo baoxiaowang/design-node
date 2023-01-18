@@ -1,7 +1,7 @@
 import { Service } from 'egg';
 import { ObjectID } from 'bson';
 
-export enum PageTypeEnum {
+enum PageTypeEnum {
   pc = 1,
   mobile = 2,
   form = 3,
@@ -11,8 +11,8 @@ export enum PageTypeEnum {
 /**
  * ApplicationService Service
  */
-export default class ApplicationService extends Service {
-  prefix = 'page';
+export default class TemplateService extends Service {
+  prefix = 'template';
 
   get collectionName() {
     return this.prefix;
@@ -115,7 +115,6 @@ export default class ApplicationService extends Service {
     name: string;
     pageType: PageTypeEnum;
   }) {
-    console.log('@@', query);
     const result = await this.app.mongo.find(this.collectionName, {
       query,
       projection: {
